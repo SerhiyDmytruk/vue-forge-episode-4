@@ -9,13 +9,14 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "db:reset": "npx supabase db reset && npm run db:types",
+    "db:reset": "npx supabase db reset && yarn npm run db:types",
     "db:types": "supabase gen types typescript --local > ./supabase/schema.ts",
     "kadena:devnet": "docker run -it -p 8080:1337 -v $HOME/.devnet/l1:/root/.devenv enof/devnet",
     "kadena:cli": "docker run --rm -it -v $(pwd):/app/ --add-host=devnet:host-gateway enof/kda-cli",
     "kadena:types": "npx pactjs contract-generate --contract=free.crowdfund --api=https://api.testnet.chainweb.com/chainweb/0.0/testnet04/chain/0/pact && npx pactjs contract-generate --contract=free.crowdfund --api=https://api.testnet.chainweb.com/chainweb/0.0/testnet04/chain/0/pact",
-    "kadena:fund": "npm run kadena:cli -- --profile=.fund-profile.json",
-    "kadena:deploy": "npm run kadena:cli -- --profile=.deploy-profile.json"
+    "kadena:types:coins": "npx pactjs contract-generate --contract=free.crowdfund --api=https://api.testnet.chainweb.com/chainweb/0.0/testnet04/chain/0/coins && npx pactjs contract-generate --contract=free.crowdfund --api=https://api.testnet.chainweb.com/chainweb/0.0/testnet04/chain/0/pact",
+    "kadena:fund": "yarn kadena:cli -- --profile=.fund-profile.json",
+    "kadena:deploy": "yarn run kadena:cli -- --profile=.deploy-profile.json"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.0.2",
