@@ -38,7 +38,7 @@ const fieldAttrs = computed(() => {
         id: props.id,
         name: props.name,
         ...$attrs,
-        class: `w-full ${classes.value},`
+        class: `w-full ${classes.value}`
     };
 });
 </script>
@@ -50,11 +50,15 @@ export default {
 </script>
 
 <template>
-    <div>
-        <label :for="id">
-            <slot name="{{label}}"></slot>
+    <div class="w-full max-w-full mb-4 form-control">
 
-            <slot name="label-text-alt"></slot>
+        <label class="label" :for="id">
+            <span class="label-text">
+                <slot name="label">{{ label }}</slot>
+            </span>
+            <span class="label-text-alt">
+                <slot name="label-text-alt"></slot>
+            </span>
         </label>
 
         <slot name="after-label"></slot>
@@ -62,12 +66,15 @@ export default {
         <input v-if="!as" v-bind="fieldAttrs" v-model="value" />
 
         <select v-if="as === 'select'" v-bind="fieldAttrs" v-model="value">
-             <slot></slot>
+            <slot></slot>
         </select>
 
 
-        <textarea v-if="as === 'textarea'" v-bind="fieldAttrs" v-model="value">
-        </textarea>
+        <textarea
+            v-if="as === 'textarea'"
+            v-bind="fieldAttrs"
+            v-model="value"
+            ></textarea>
 
 
         <slot name="after-input"></slot>
