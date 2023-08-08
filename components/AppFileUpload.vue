@@ -15,7 +15,9 @@ const { storage } = useSupabaseClient();
 
 async function handleChange(e: Event) {
   const el = e.target as HTMLInputElement;
+
   if (!el.files?.length) return;
+
   const file = el.files[0];
   const { data, error } = await storage
     .from(props.bucket)
